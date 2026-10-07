@@ -1,0 +1,39 @@
+[project]
+name = "helix-agent-platform"
+version = "0.1.0"
+description = "Reusable LangGraph project template"
+requires-python = ">=3.11,<3.14"
+
+dependencies = [
+  "langchain==1.3.14",
+  "langchain-openai==1.4.0",
+  "langgraph==1.2.9",
+  "python-dotenv==1.2.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==9.1.1",
+    "ruff==0.15.22",
+]
+
+[project.scripts]
+helix = "helix.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/helix"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
